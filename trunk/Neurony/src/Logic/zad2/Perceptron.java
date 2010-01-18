@@ -3,12 +3,9 @@
  * and open the template in the editor.
  */
 
-package Logic.zad1;
+package Logic.zad2;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import Logic.zad1.*;
 import java.util.Random;
 import java.util.Vector;
 
@@ -30,6 +27,9 @@ public class Perceptron {
         Random r = new Random();
         prog = r.nextDouble();
         wagi = new double[n];
+        for(int i=0;i<n;i++) {
+            wagi[i] = r.nextDouble();
+        }
     }
 
     public double suma() {
@@ -51,6 +51,10 @@ public class Perceptron {
         else {
             return -1;
         }
+    }
+
+    public double id() {
+        return this.suma();
     }
 
     public double getProg() {
@@ -141,6 +145,26 @@ public class Perceptron {
        }
 
         System.out.println("Dobrze klasykowany: " + dobrze + " Zle: " + zle); */
+
+    }
+
+    public void dodajWagi(double[] add) {
+
+        if(add.length==this.n) {
+            for(int i=0;i<n;i++) {
+                wagi[i]+=add[i];
+            }
+        }
+
+    }
+
+    public void odejmijWagi(double[] sub) {
+
+        if(sub.length==this.n) {
+            for(int i=0;i<n;i++) {
+                wagi[i]+=sub[i];
+            }
+        }
 
     }
 
