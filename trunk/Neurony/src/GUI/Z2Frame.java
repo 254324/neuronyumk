@@ -160,6 +160,8 @@ public class Z2Frame extends javax.swing.JFrame {
            if((i+1)%4==0) out+="\n";
         }
         System.out.println("Aktualne values:\n" +out);
+        int i = ml.test(values);
+        jLabel1.setText("Przypomina to: " + i);
 
     }
 

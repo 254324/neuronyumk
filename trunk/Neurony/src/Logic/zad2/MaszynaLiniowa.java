@@ -80,9 +80,7 @@ public class MaszynaLiniowa {
         Random r = new Random();
         for(int i=0;i<iteCnt;i++) {
             random = r.nextInt(przyklady.size());
-        //    System.out.println("Numer iteracji: " + i + "/" + iteCnt + " Random: " + random);
             PrzykladUczacy ex = przyklady.get(random);
-            // max - indeks perceptronu z maxem
             int max = maxOut();
             if(ex.getResult()!=max) {
                 perceptrony.get(ex.getResult()).dodajWagi(ex.getVal());
@@ -104,6 +102,21 @@ public class MaszynaLiniowa {
 
     public PrzykladUczacy getPrzyklad(int i) {
         return this.przyklady.get(i);
+    }
+
+    public int test(double[] values) {
+        double maxOut = Double.MIN_VALUE;
+        int perceptronNo = 0;
+        for (Perceptron p : perceptrony){
+                double dotProduct = p.id(values);
+                if (dotProduct > maxOut){
+                    maxOut = dotProduct;
+                    perceptronNo = perceptrony.indexOf(p);
+                }
+                System.out.println(perceptrony.indexOf(p)+": "+dotProduct);
+            }
+
+        return perceptronNo;
     }
 
 
