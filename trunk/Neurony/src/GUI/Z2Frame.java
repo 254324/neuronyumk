@@ -16,6 +16,7 @@ import Logic.zad2.Perceptron;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.Vector;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
@@ -41,6 +42,7 @@ public class Z2Frame extends javax.swing.JFrame {
         }
 
         ml = new MaszynaLiniowa(20, perceptrony,values);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
     }
 
@@ -186,7 +188,7 @@ public class Z2Frame extends javax.swing.JFrame {
             return this;
         }
 
-}
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox1;
