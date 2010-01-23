@@ -21,6 +21,7 @@ public class MaszynaLiniowa {
 
     ////// Zad 2////
     Vector<PrzykladUczacy> przyklady;
+    int random;
 
     ////
 
@@ -30,6 +31,7 @@ public class MaszynaLiniowa {
         this.wejscia = wejscia;
         ///// Zad 2
         przyklady = new PrzykladUczacy(20).cyferki();
+        this.uczSie(100000);
     }
 
     public MaszynaLiniowa(int n) {
@@ -53,7 +55,7 @@ public class MaszynaLiniowa {
     }
 
     public double getOut(int j) {
-        return perceptrony.get(j).id();
+        return perceptrony.get(random).id(przyklady.get(random).getVal());
     }
 
     public int maxOut() {
@@ -77,7 +79,10 @@ public class MaszynaLiniowa {
     public void uczSie(int iteCnt) {
         Random r = new Random();
         for(int i=0;i<iteCnt;i++) {
-            PrzykladUczacy ex = przyklady.get(r.nextInt(przyklady.size()));
+            random = r.nextInt(przyklady.size());
+        //    System.out.println("Numer iteracji: " + i + "/" + iteCnt + " Random: " + random);
+            PrzykladUczacy ex = przyklady.get(random);
+            // max - indeks perceptronu z maxem
             int max = maxOut();
             if(ex.getResult()!=max) {
                 perceptrony.get(ex.getResult()).dodajWagi(ex.getVal());
@@ -88,6 +93,18 @@ public class MaszynaLiniowa {
 
     }
 
+    public Vector<PrzykladUczacy> getPrzyklady() {
+        return przyklady;
+    }
+
+    public void setPrzyklady(Vector<PrzykladUczacy> przyklady) {
+        this.przyklady = przyklady;
+    }
+
+
+    public PrzykladUczacy getPrzyklad(int i) {
+        return this.przyklady.get(i);
+    }
 
 
 }
