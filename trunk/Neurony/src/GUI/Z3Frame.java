@@ -29,6 +29,8 @@ public class Z3Frame extends javax.swing.JFrame {
 
     double values[] = new double[20];
     double values2[] = new double[20];
+    Vector<Perceptron> perceptrony;
+    Autoasocjator as;
     /** Creates new form Z3Frame */
     public Z3Frame() {
         initComponents();
@@ -39,11 +41,11 @@ public class Z3Frame extends javax.swing.JFrame {
         }
         jTable1.setDefaultRenderer(Object.class, new InputColorCellRenderer());
         jTable2.setDefaultRenderer(Object.class, new OutputColorCellRenderer());
-        Vector<Perceptron> perceptrony = new Vector<Perceptron>();
-        for(int i=0;i<10;i++) {
+        perceptrony = new Vector<Perceptron>();
+        for(int i=0;i<20;i++) {
             perceptrony.add(new Perceptron(20));
         }
-        Autoasocjator as = new Autoasocjator(20,perceptrony);
+        as = new Autoasocjator(20,perceptrony);
     }
 
     /** This method is called from within the constructor to
@@ -150,7 +152,8 @@ public class Z3Frame extends javax.swing.JFrame {
 
 
     private void updateOutput() {
-        
+        values2 = as.testInput(values);
+        jTable2.repaint();
     }
     // End of variables declaration
 
