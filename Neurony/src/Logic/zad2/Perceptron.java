@@ -5,7 +5,6 @@
 
 package Logic.zad2;
 
-import Logic.zad1.*;
 import java.util.Random;
 import java.util.Vector;
 
@@ -26,6 +25,7 @@ public class Perceptron {
         this.n = n;
         Random r = new Random();
         prog = r.nextDouble();
+        wejscia = new double[n];
         wagi = new double[n];
         for(int i=0;i<n;i++) {
             wagi[i] = r.nextDouble();
@@ -35,7 +35,6 @@ public class Perceptron {
     public double suma() {
 
         double sum = 0;
-
         for(int i=0;i<n;i++) {
             sum+=wagi[i]*wejscia[i];
         }
@@ -53,7 +52,8 @@ public class Perceptron {
         }
     }
 
-    public double id() {
+    public double id(double[] wejscia) {
+        this.wejscia=wejscia;
         return this.suma();
     }
 
@@ -162,7 +162,7 @@ public class Perceptron {
 
         if(sub.length==this.n) {
             for(int i=0;i<n;i++) {
-                wagi[i]+=sub[i];
+                wagi[i]-=sub[i];
             }
         }
 

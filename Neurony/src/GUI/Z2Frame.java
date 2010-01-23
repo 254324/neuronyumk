@@ -11,7 +11,13 @@
 
 package GUI;
 
+import Logic.zad2.MaszynaLiniowa;
+import Logic.zad2.Perceptron;
 import java.awt.Color;
+import java.awt.Component;
+import java.util.Vector;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 /**
@@ -20,9 +26,21 @@ import javax.swing.table.TableCellRenderer;
  */
 public class Z2Frame extends javax.swing.JFrame {
 
+    public double[] values = new double[20];
+    MaszynaLiniowa ml;
     /** Creates new form Z2Frame */
     public Z2Frame() {
         initComponents();
+        jTable1.setDefaultRenderer(Object.class, new ColorCellRenderer());
+        Vector<Perceptron> perceptrony = new Vector<Perceptron>();
+        for(int i=0;i<10;i++) {
+            perceptrony.add(new Perceptron(20));
+        }
+        for(int i=0;i<20;i++) {
+            values[i]=-1;
+        }
+
+        ml = new MaszynaLiniowa(20, perceptrony,values);
 
     }
 
@@ -35,13 +53,12 @@ public class Z2Frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton1.setText("jButton1");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,6 +80,15 @@ public class Z2Frame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "--" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Przypomina to: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,32 +96,51 @@ public class Z2Frame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int column = jTable1.columnAtPoint(evt.getPoint());
         int row = jTable1.rowAtPoint(evt.getPoint());
-        TableCellRenderer tcr = jTable1.getCellRenderer(row, column);
-
+        int column = jTable1.columnAtPoint(evt.getPoint());
+        values[row*4+column] = -values[row*4+column];
+        System.out.println("CLICK at cell (" + column + "," + row + ") : " + (row*4+column) + " value: " + values[row*4+column] );
+        check();
+        jTable1.repaint();
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if(!"--".equals(jComboBox1.getSelectedItem())){
+            values = ml.getPrzyklad(Integer.parseInt((String)jComboBox1.getSelectedItem())).getVal();
+        } else {
+            for(int i=0;i<20;i++) {
+                values[i]=-1;
+            }
+        }
+        check();
+        repaint();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -108,8 +153,42 @@ public class Z2Frame extends javax.swing.JFrame {
         });
     }
 
+    private void check() {
+        String out = "";
+        for(int i=0;i<20;i++) {
+           out+=values[i]+", ";
+           if((i+1)%4==0) out+="\n";
+        }
+        System.out.println("Aktualne values:\n" +out);
+
+    }
+
+    public class ColorCellRenderer extends JLabel implements
+            TableCellRenderer {
+
+        public ColorCellRenderer() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+
+            switch ((int)Z2Frame.this.values[row*4 + column]){
+                case -1:
+                    this.setBackground(Color.white);
+                    break;
+                case 1:
+                    this.setBackground(Color.black);
+                    break;
+            }
+            return this;
+        }
+
+}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

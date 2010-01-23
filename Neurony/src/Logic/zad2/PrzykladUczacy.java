@@ -5,7 +5,6 @@
 
 package Logic.zad2;
 
-import Logic.zad1.*;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -51,7 +50,7 @@ public class PrzykladUczacy {
 
     public Vector<PrzykladUczacy> cyferki() {
          Vector<PrzykladUczacy> vec = new Vector<PrzykladUczacy> ();
-         double[] zero = {1,1,1,1, 1,-1,-1,1, 1,-1,-1,1, 1,1,1,1};
+         double[] zero = {1,1,1,1, 1,-1,-1,1,1,-1,-1,1, 1,-1,-1,1, 1,1,1,1};
        vec.add(new PrzykladUczacy(20, 0, zero));
 
        double[] jeden = {-1,-1,-1,1, -1,-1,1,1, -1,1,-1,1, -1,-1,-1,1, -1,-1,-1,1};

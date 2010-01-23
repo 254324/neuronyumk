@@ -44,6 +44,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("Zadanie 2");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,6 +78,11 @@ public class MainFrame extends javax.swing.JFrame {
         Z1Frame z1f = new Z1Frame();
         z1f.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        Z2Frame z2f = new Z2Frame();
+        z2f.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
     * @param args the command line arguments
