@@ -30,6 +30,7 @@ public class PrzykladUczacy {
 
 
 
+
     public PrzykladUczacy(int n, int result, double[] val) {
         this.n = n;
         this.result = result;
@@ -50,38 +51,38 @@ public class PrzykladUczacy {
 
     public Vector<PrzykladUczacy> cyferki() {
          Vector<PrzykladUczacy> vec = new Vector<PrzykladUczacy> ();
-         double[] zero = {1,-1,-1,-1, -1,1,-1,-1, -1,-1,1,-1, -1,-1,1,-1, -1,-1,-1,1};
+         double[] zero = {1,1,1,1, 1,-1,-1,1,1,-1,-1,1, 1,-1,-1,1, 1,1,1,1};
        vec.add(new PrzykladUczacy(20, 0, zero));
 
-       double[] jeden = {-1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,1, -1,-1,-1,1};
+       double[] jeden = {-1,-1,-1,1, -1,-1,1,1, -1,1,-1,1, -1,-1,-1,1, -1,-1,-1,1};
        vec.add(new PrzykladUczacy(20, 1, jeden));
 
-       double[] dwa = {-1,1,-1,-1, 1,-1,-1,-1,-1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1};
+       double[] dwa = {1,1,1,1, -1,-1,-1,1, 1,1,1,1, 1,-1,-1,-1, 1,1,1,1};
        vec.add(new PrzykladUczacy(20, 2, dwa));
 
-       double[] trzy = {-1,-1,1,-1, -1,-1,1,-1, -1,1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1};
+       double[] trzy = {1,1,1,1, -1,-1,-1,1, 1,1,1,1, -1,-1,-1,1, 1,1,1,1};
        vec.add(new PrzykladUczacy(20, 3, trzy));
 
-   //    double[] cztery = {-1,-1,-1,-1, -1,-1,-1,-1,-1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1};
-   //    vec.add(new PrzykladUczacy(20, 4, cztery));
+       double[] cztery = {1,-1,-1,-1, 1,-1,1,-1, 1,1,1,1, -1,-1,1,-1, -1,-1,1,-1};
+       vec.add(new PrzykladUczacy(20, 4, cztery));
 
-    //   double[] piec = {-1,-1,-1,-1, -1,-1,-1,-1,-1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1};
-    //   vec.add(new PrzykladUczacy(20, 5, piec));
+       double[] piec = {1,1,1,1, 1,-1,-1,-1, 1,1,1,1, -1,-1,-1,1, 1,1,1,1};
+       vec.add(new PrzykladUczacy(20, 5, piec));
 
-    //   double[] szesc = {-1,-1,-1,-1, -1,-1,-1,-1,-1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1};
-    //   vec.add(new PrzykladUczacy(20, 6, szesc));
+       double[] szesc = {1,1,1,1, 1,-1,-1,-1, 1,1,1,1, 1,-1,-1,1, 1,1,1,1};
+       vec.add(new PrzykladUczacy(20, 6, szesc));
 
-    //   double[] siedem = {-1,-1,-1,-1, -1,-1,-1,-1,-1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1};
-    //   vec.add(new PrzykladUczacy(20, 7, siedem));
+       double[] siedem = {1,1,1,1, -1,-1,-1,1, -1,-1,1,1-1, -1,1,-1,-1, 1,-1,-1,-1};
+       vec.add(new PrzykladUczacy(20, 7, siedem));
 
-   //    double[] osiem = {-1,-1,-1,-1, -1,-1,-1,-1,-1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1};
-   //    vec.add(new PrzykladUczacy(20, 8, osiem));
+       double[] osiem = {1,1,1,1, 1,-1,-1,1, 1,1,1,1, 1,-1,-1,1, 1,1,1,1};
+       vec.add(new PrzykladUczacy(20, 8, osiem));
 
-   //    double[] dziewiec = {-1,-1,-1,-1, -1,-1,-1,-1,-1,-1,-1,-1, -1,-1,-1,-1, -1,-1,-1,-1};
-   //    vec.add(new PrzykladUczacy(20, 9, dziewiec));
+       double[] dziewiec = {1,1,1,1, 1,-1,-1,1, 1,1,1,1, -1,-1,-1,1, 1,1,1,1};
+       vec.add(new PrzykladUczacy(20, 9, dziewiec));
 
          return vec;
-        
+
     }
 
     public Vector<PrzykladUczacy> wczytaj(String filename) {

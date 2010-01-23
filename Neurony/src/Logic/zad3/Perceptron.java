@@ -99,12 +99,14 @@ public class Perceptron {
                     if(lifetime>maxLifetime) {
                         maxLifetime=lifetime;
                         maxProg = prog;
-                        maxWagi[0] = wagi[0];
-                        maxWagi[1] = wagi[1];
+                        for(int h=0;h<n;h++) {
+                            maxWagi[h] = wagi[h];
+                        }
                     }
                 } else {
-                    wagi[0] += ex.getResult()*ex.getVal()[0];
-                    wagi[1] += ex.getResult()*ex.getVal()[1];
+                    for(int h=0;h<n;h++) {
+                        wagi[h] += ex.getResult()*ex.getVal()[h];
+                    }
                     prog-=ex.getResult();
                     lifetime = 0;
                 }
@@ -114,20 +116,23 @@ public class Perceptron {
                     if(lifetime>maxLifetime) {
                         maxLifetime=lifetime;
                         maxProg = prog;
-                        maxWagi[0] = wagi[0];
-                        maxWagi[1] = wagi[1];
+                        for(int h=0;h<n;h++) {
+                            maxWagi[h] = wagi[h];
+                        }
                     }
                 } else {
-                    wagi[0] += ex.getResult()*ex.getVal()[0];
-                    wagi[1] += ex.getResult()*ex.getVal()[1];
+                    for(int h=0;h<n;h++) {
+                        wagi[h] += ex.getResult()*ex.getVal()[h];
+                    }
                     prog-=ex.getResult();
                     lifetime = 0;
                 }
             }
         }
 
-        wagi[0] = maxWagi[0];
-        wagi[1] = maxWagi[1];
+        for(int j=0;j<n;j++) {
+            wagi[j] = maxWagi[j];
+        }
         prog = maxProg;
 
 
@@ -166,6 +171,25 @@ public class Perceptron {
             }
         }
 
+    }
+
+    public int calculate(double[] vector) {
+     //   System.out.println("Sprawdzam czy " + calculateDotProduct(vector) +  ">" + prog);
+        if (calculateDotProduct(vector) > prog) {
+     //       System.out.println("Return 1");
+            return 1;
+        } else {
+     //       System.out.println("Return -1");
+            return -1;
+        }
+    }
+
+    private double calculateDotProduct(double[] vector) {
+        Double result = 0.0;
+        for (int i = 0; i < n; ++i) {
+            result += vector[i] * wagi[i];
+        }
+        return result;
     }
 
 

@@ -21,6 +21,7 @@ public class Autoasocjator {
 
     ////// Zad 2////
     Vector<PrzykladUczacy> przyklady;
+    Vector<PrzykladUczacy> przykladyWlasciwe = new Vector<PrzykladUczacy>();
     int random;
 
     ////
@@ -29,7 +30,7 @@ public class Autoasocjator {
         this.n = n;
         this.perceptrony = perceptrony;
         this.wejscia = new double[20];
-        ///// Zad 2
+        ///// Zad 3
         przyklady = new PrzykladUczacy(20).cyferki();
         this.uczSie(100000);
     }
@@ -77,18 +78,22 @@ public class Autoasocjator {
     }
 
     public void uczSie(int iteCnt) {
-        Random r = new Random();
-        for(int i=0;i<iteCnt;i++) {
-            random = r.nextInt(przyklady.size());
-            PrzykladUczacy ex = przyklady.get(random);
-            int max = maxOut();
-            if(ex.getResult()!=max) {
-                perceptrony.get(ex.getResult()).dodajWagi(ex.getVal());
-                perceptrony.get(max).odejmijWagi(ex.getVal());
-            }
+        for(Perceptron p : perceptrony) {
+           stworzPrzyklady(perceptrony.indexOf(p));
+           p.pocketLearning(przykladyWlasciwe);
+      //      System.out.println("Perceptorn: " + p.getProg() + " :: " + p.getWagi()[0] + " " +p.getWagi()[1]);
         }
 
+    }
 
+    public void stworzPrzyklady(int indeks) {
+   //     System.out.println("Tworze przyklad dla: " + indeks);
+        for(int i=0;i<przyklady.size();i++) {
+            int res =(int)przyklady.get(i).getVal()[indeks];
+     //       System.out.println("Dla i " + i + " mamy res: " + res);
+     //       System.out.println("Tablica: " + przyklady.get(i).getVal().length);
+            przykladyWlasciwe.add(new PrzykladUczacy(20,res,przyklady.get(i).getVal()));
+        }
     }
 
     public Vector<PrzykladUczacy> getPrzyklady() {
@@ -117,6 +122,15 @@ public class Autoasocjator {
             }
 
         return perceptronNo;
+    }
+
+    public double[] testInput(double[] values) {
+       double[] result = new double[20];
+        for (int x = 0; x < perceptrony.size(); x++) {
+            int res = perceptrony.get(x).calculate(values);
+            result[x] = res;
+        }
+        return result;
     }
 
 
