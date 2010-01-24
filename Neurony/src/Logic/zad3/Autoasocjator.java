@@ -32,7 +32,7 @@ public class Autoasocjator {
         this.wejscia = new double[20];
         ///// Zad 3
         przyklady = new PrzykladUczacy(20).cyferki();
-        this.uczSie(100000);
+        this.uczSie(10);
     }
 
     public Autoasocjator(int n) {
@@ -81,7 +81,7 @@ public class Autoasocjator {
         for(Perceptron p : perceptrony) {
            stworzPrzyklady(perceptrony.indexOf(p));
            p.pocketLearning(przykladyWlasciwe);
-      //      System.out.println("Perceptorn: " + p.getProg() + " :: " + p.getWagi()[0] + " " +p.getWagi()[1]);
+            System.out.println("Perceptorn: " + p.getProg() + " :: " + p.getWagi()[0] + " " +p.getWagi()[1]);
         }
 
     }
@@ -90,7 +90,12 @@ public class Autoasocjator {
    //     System.out.println("Tworze przyklad dla: " + indeks);
         for(int i=0;i<przyklady.size();i++) {
             int res =(int)przyklady.get(i).getVal()[indeks];
-     //       System.out.println("Dla i " + i + " mamy res: " + res);
+        //    System.out.println("("+indeks+") Mamy res: " + res);
+        //    String out="";
+        //    for(int j=0;j<przyklady.get(i).getVal().length;j++) {
+        //        out+=przyklady.get(i).getVal()[j]+" ";
+        //    }
+        //    System.out.println(out);
      //       System.out.println("Tablica: " + przyklady.get(i).getVal().length);
             przykladyWlasciwe.add(new PrzykladUczacy(20,res,przyklady.get(i).getVal()));
         }

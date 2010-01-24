@@ -153,6 +153,11 @@ public class Z3Frame extends javax.swing.JFrame {
 
     private void updateOutput() {
         values2 = as.testInput(values);
+        String val = "[";
+        for(int i=0;i<values2.length;i++) {
+            val+=" "+values2[i];
+        }
+        System.out.println(val);
         jTable2.repaint();
     }
     // End of variables declaration

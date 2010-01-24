@@ -25,7 +25,7 @@ public class Perceptron {
         this.n = n;
         Random r = new Random();
         prog = r.nextDouble();
-        wejscia = new double[n];
+      //  wejscia = new double[n];
         wagi = new double[n];
         for(int i=0;i<n;i++) {
             wagi[i] = r.nextDouble();
