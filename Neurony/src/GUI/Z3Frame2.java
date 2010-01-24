@@ -25,14 +25,14 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author Pawel
  */
-public class Z3Frame extends javax.swing.JFrame {
+public class Z3Frame2 extends javax.swing.JFrame {
 
     int values[] = new int[20];
     int values2[] = new int[20];
     Vector<Perceptron> perceptrony;
     Autoasocjator as;
     /** Creates new form Z3Frame */
-    public Z3Frame() {
+    public Z3Frame2() {
         initComponents();
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         for(int i=0;i<20;i++) {
@@ -45,6 +45,7 @@ public class Z3Frame extends javax.swing.JFrame {
         for(int i=0;i<20;i++) {
             perceptrony.add(new Perceptron(20));
         }
+        System.out.println("Frame2");
         as = new Autoasocjator(20,perceptrony);
     }
 
@@ -127,9 +128,15 @@ public class Z3Frame extends javax.swing.JFrame {
         int row = jTable1.rowAtPoint(evt.getPoint());
         int column = jTable1.columnAtPoint(evt.getPoint());
         values[row*4+column] = -values[row*4+column];
-        System.out.println("CLICK at cell (" + column + "," + row + ") : " + (row*4+column) + " value: " + values[row*4+column] );
+    //    System.out.println("CLICK at cell (" + column + "," + row + ") : " + (row*4+column) + " value: " + values[row*4+column] );
         jTable1.repaint();
+        String val = "Input table: [";
+        for(int i=0;i<values.length;i++) {
+            val+=" "+values[i];
+        }
+        System.out.println(val);
         updateOutput();
+        jTable2.repaint();
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -138,7 +145,7 @@ public class Z3Frame extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Z3Frame().setVisible(true);
+                new Z3Frame2().setVisible(true);
             }
         });
     }
@@ -152,13 +159,16 @@ public class Z3Frame extends javax.swing.JFrame {
 
 
     private void updateOutput() {
-        values2 = as.testInput(values);
-        String val = "[";
+        int[] input = new int[20];
+        for (int i = 0; i < values.length; i++) {
+            input[i] = values[i];
+        }
+        values2 = as.testInput(input);
+        String val = "Output table: [";
         for(int i=0;i<values2.length;i++) {
             val+=" "+values2[i];
         }
         System.out.println(val);
-        jTable2.repaint();
     }
     // End of variables declaration
 
@@ -172,7 +182,7 @@ public class Z3Frame extends javax.swing.JFrame {
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
 
-            switch ((int)Z3Frame.this.values[row*4 + column]){
+            switch ((int)Z3Frame2.this.values[row*4 + column]){
                 case -1:
                     this.setBackground(Color.white);
                     break;
@@ -196,7 +206,7 @@ public class Z3Frame extends javax.swing.JFrame {
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
 
-            switch ((int)Z3Frame.this.values2[row*4 + column]){
+            switch ((int)Z3Frame2.this.values2[row*4 + column]){
                 case -1:
                     this.setBackground(Color.white);
                     break;

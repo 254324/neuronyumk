@@ -173,18 +173,18 @@ public class Perceptron {
 
     }
 
-    public int calculate(double[] vector) {
-     //   System.out.println("Sprawdzam czy " + calculateDotProduct(vector) +  ">" + prog);
+    public int calculate(int[] vector) {
+        System.out.println("Sprawdzam czy " + calculateDotProduct(vector) +  ">" + prog);
         if (calculateDotProduct(vector) > prog) {
-     //       System.out.println("Return 1");
+            System.out.println("Return 1");
             return 1;
         } else {
-     //       System.out.println("Return -1");
+            System.out.println("Return -1");
             return -1;
         }
     }
 
-    private double calculateDotProduct(double[] vector) {
+    private double calculateDotProduct(int[] vector) {
         Double result = 0.0;
         for (int i = 0; i < n; ++i) {
             result += vector[i] * wagi[i];

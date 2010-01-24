@@ -5,7 +5,6 @@
 
 package Logic.zad3;
 
-import java.util.Random;
 import java.util.Vector;
 
 /**
@@ -16,10 +15,9 @@ public class Autoasocjator {
 
     private int n;
     private Vector<Perceptron> perceptrony;
-    private double[] wejscia;
 
 
-    ////// Zad 2////
+    ////// Zad 3////
     Vector<PrzykladUczacy> przyklady;
     Vector<PrzykladUczacy> przykladyWlasciwe = new Vector<PrzykladUczacy>();
     int random;
@@ -29,10 +27,10 @@ public class Autoasocjator {
     public Autoasocjator(int n, Vector<Perceptron> perceptrony) {
         this.n = n;
         this.perceptrony = perceptrony;
-        this.wejscia = new double[20];
+     //   this.wejscia = new double[20];
         ///// Zad 3
         przyklady = new PrzykladUczacy(20).cyferki();
-        this.uczSie(10);
+        this.uczSie(100000);
     }
 
     public Autoasocjator(int n) {
@@ -81,22 +79,24 @@ public class Autoasocjator {
         for(Perceptron p : perceptrony) {
            stworzPrzyklady(perceptrony.indexOf(p));
            p.pocketLearning(przykladyWlasciwe);
-            System.out.println("Perceptorn: " + p.getProg() + " :: " + p.getWagi()[0] + " " +p.getWagi()[1]);
+            System.out.println("Perceptorn (" + perceptrony.indexOf(p) + " ): " + p.getProg() + " :: " + p.getWagi()[0] + " " +p.getWagi()[19]);
         }
 
     }
 
     public void stworzPrzyklady(int indeks) {
-   //     System.out.println("Tworze przyklad dla: " + indeks);
+        System.out.println("Tworze przyklad dla perceptrony o indeksie: " + indeks);
+        przykladyWlasciwe = new Vector<PrzykladUczacy>();
         for(int i=0;i<przyklady.size();i++) {
             int res =(int)przyklady.get(i).getVal()[indeks];
-        //    System.out.println("("+indeks+") Mamy res: " + res);
-        //    String out="";
-        //    for(int j=0;j<przyklady.get(i).getVal().length;j++) {
-        //        out+=przyklady.get(i).getVal()[j]+" ";
-        //    }
-        //    System.out.println(out);
-     //       System.out.println("Tablica: " + przyklady.get(i).getVal().length);
+            System.out.println("("+indeks+", przyklad " + i +" ) Mamy res: " + res);
+            String out="";
+            for(int j=0;j<przyklady.get(i).getVal().length;j++) {
+                out+=przyklady.get(i).getVal()[j]+"(" +j+") ";
+            }
+            System.out.println(out);
+            System.out.println("****************");
+            System.out.println("ROZMIAR PRZYKLADOW UCZACYCH ATM: " + przykladyWlasciwe.size());
             przykladyWlasciwe.add(new PrzykladUczacy(20,res,przyklady.get(i).getVal()));
         }
     }
@@ -129,8 +129,9 @@ public class Autoasocjator {
         return perceptronNo;
     }
 
-    public double[] testInput(double[] values) {
-       double[] result = new double[20];
+    public int[] testInput(int[] values) {
+       int[] result = new int[20];
+        System.out.println("Rozmiar perceptornow: " + perceptrony.size());
         for (int x = 0; x < perceptrony.size(); x++) {
             int res = perceptrony.get(x).calculate(values);
             result[x] = res;

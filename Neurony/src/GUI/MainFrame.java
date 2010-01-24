@@ -107,7 +107,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Z3Frame z3f = new Z3Frame();
+        Z3Frame2 z3f = new Z3Frame2();
         z3f.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
