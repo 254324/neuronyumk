@@ -143,19 +143,21 @@ public class Perceptron {
 
 
 
-  /*     int dobrze = 0;
+       int dobrze = 0;
        int zle = 0;
 
        for(int j=0;j<x.size();j++) {
            double z = x.get(j).bipolar(maxWagi);
-           if(z>=maxProg) {
-               dobrze++;
+           if((z>=maxProg && x.get(j).getResult()==1) || (z<maxProg && x.get(j).getResult()==-1)) {
+                dobrze++;
            } else {
-               zle++;
+                zle++;
            }
        }
 
-        System.out.println("Dobrze klasykowany: " + dobrze + " Zle: " + zle); */
+
+        System.out.println("Dobrze klasykowany: " + dobrze + " Zle: " + zle);
+
 
     }
 

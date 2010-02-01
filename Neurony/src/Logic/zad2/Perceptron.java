@@ -168,5 +168,15 @@ public class Perceptron {
 
     }
 
+    public double[] getWejscia() {
+        return wejscia;
+    }
+
+    public void setWejscia(double[] wejscia) {
+        this.wejscia = wejscia;
+    }
+
+
+
 
 }

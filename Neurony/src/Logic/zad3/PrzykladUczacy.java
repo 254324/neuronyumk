@@ -75,7 +75,7 @@ public class PrzykladUczacy {
        double[] siedem = {1,1,1,1, -1,-1,-1,1, -1,-1,1,-1, -1,1,-1,-1, 1,-1,-1,-1};
        vec.add(new PrzykladUczacy(20, 7, siedem));
 
-       double[] osiem = {1,1,1,1, 1,-1,-1,1, 1,1,1,1, 1,-1,-1,1, 1,1,1,1};
+       double[] osiem = {-1,1,1,-1, 1,-1,-1,1, -1,1,1,-1, 1,-1,-1,1, -1,1,1,-1};
        vec.add(new PrzykladUczacy(20, 8, osiem));
 
        double[] dziewiec = {1,1,1,1, 1,-1,-1,1, 1,1,1,1, -1,-1,-1,1, 1,1,1,1};

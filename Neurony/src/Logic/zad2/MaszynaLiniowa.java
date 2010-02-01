@@ -31,7 +31,23 @@ public class MaszynaLiniowa {
         this.wejscia = wejscia;
         ///// Zad 2
         przyklady = new PrzykladUczacy(20).cyferki();
+        Random r = new Random();
+
+        Vector<PrzykladUczacy> przyklady2 = new Vector<PrzykladUczacy>();
+        przyklady2 = (Vector<PrzykladUczacy>) przyklady.clone();
+
+        for(PrzykladUczacy pu : przyklady) {
+       //     for(int j=0;j<100;j++) {
+                for(int i=0;i<pu.getVal().length;i++) {
+                    if(r.nextDouble()<0.15) {
+                        System.out.println("Szum dla " + i);
+                        pu.getVal()[i]=-pu.getVal()[i];
+                    }
+                }
+         //   }
+        }
         this.uczSie(100000);
+        przyklady = new PrzykladUczacy(20).cyferki();
     }
 
     public MaszynaLiniowa(int n) {

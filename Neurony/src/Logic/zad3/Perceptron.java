@@ -174,12 +174,12 @@ public class Perceptron {
     }
 
     public int calculate(int[] vector) {
-        System.out.println("Sprawdzam czy " + calculateDotProduct(vector) +  ">" + prog);
+  //      System.out.println("Sprawdzam czy " + calculateDotProduct(vector) +  ">" + prog);
         if (calculateDotProduct(vector) > prog) {
-            System.out.println("Return 1");
+    //        System.out.println("Return 1");
             return 1;
         } else {
-            System.out.println("Return -1");
+      //      System.out.println("Return -1");
             return -1;
         }
     }
