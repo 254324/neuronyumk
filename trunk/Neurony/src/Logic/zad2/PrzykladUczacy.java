@@ -18,7 +18,7 @@ import java.util.Vector;
 public class PrzykladUczacy {
     int n;
     private int result;
-    private double[] val;
+    public double[] val;
 
     public PrzykladUczacy(int n) {
         this.n = n;
@@ -50,14 +50,14 @@ public class PrzykladUczacy {
 
     public Vector<PrzykladUczacy> cyferki() {
          Vector<PrzykladUczacy> vec = new Vector<PrzykladUczacy> ();
-         double[] zero = {1,1,1,1, 1,-1,-1,1,1,-1,-1,1, 1,-1,-1,1, 1,1,1,1};
-       vec.add(new PrzykladUczacy(20, 0, zero));
+ //        double[] zero = {1,1,1,1, 1,-1,-1,1,1,-1,-1,1, 1,-1,-1,1, 1,1,1,1};
+ //      vec.add(new PrzykladUczacy(20, 0, zero));
 
        double[] jeden = {-1,-1,-1,1, -1,-1,1,1, -1,1,-1,1, -1,-1,-1,1, -1,-1,-1,1};
        vec.add(new PrzykladUczacy(20, 1, jeden));
 
-       double[] dwa = {1,1,1,1, -1,-1,-1,1, 1,1,1,1, 1,-1,-1,-1, 1,1,1,1};
-       vec.add(new PrzykladUczacy(20, 2, dwa));
+  //     double[] dwa = {1,1,1,1, -1,-1,-1,1, 1,1,1,1, 1,-1,-1,-1, 1,1,1,1};
+  //     vec.add(new PrzykladUczacy(20, 2, dwa));
 
        double[] trzy = {1,1,1,1, -1,-1,-1,1, 1,1,1,1, -1,-1,-1,1, 1,1,1,1};
        vec.add(new PrzykladUczacy(20, 3, trzy));
@@ -68,17 +68,17 @@ public class PrzykladUczacy {
        double[] piec = {1,1,1,1, 1,-1,-1,-1, 1,1,1,1, -1,-1,-1,1, 1,1,1,1};
        vec.add(new PrzykladUczacy(20, 5, piec));
 
-       double[] szesc = {1,1,1,1, 1,-1,-1,-1, 1,1,1,1, 1,-1,-1,1, 1,1,1,1};
-       vec.add(new PrzykladUczacy(20, 6, szesc));
+ //      double[] szesc = {1,1,1,1, 1,-1,-1,-1, 1,1,1,1, 1,-1,-1,1, 1,1,1,1};
+ //      vec.add(new PrzykladUczacy(20, 6, szesc));
 
        double[] siedem = {1,1,1,1, -1,-1,-1,1, -1,-1,1,-1, -1,1,-1,-1, 1,-1,-1,-1};
        vec.add(new PrzykladUczacy(20, 7, siedem));
 
-       double[] osiem = {1,1,1,1, 1,-1,-1,1, 1,1,1,1, 1,-1,-1,1, 1,1,1,1};
+       double[] osiem = {-1,1,1,-1, 1,-1,-1,1, -1,1,1,-1, 1,-1,-1,1, -1,1,1,-1};
        vec.add(new PrzykladUczacy(20, 8, osiem));
 
-       double[] dziewiec = {1,1,1,1, 1,-1,-1,1, 1,1,1,1, -1,-1,-1,1, 1,1,1,1};
-       vec.add(new PrzykladUczacy(20, 9, dziewiec));
+ //      double[] dziewiec = {1,1,1,1, 1,-1,-1,1, 1,1,1,1, -1,-1,-1,1, 1,1,1,1};
+ //      vec.add(new PrzykladUczacy(20, 9, dziewiec));
 
          return vec;
         
