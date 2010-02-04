@@ -11,15 +11,28 @@
 
 package GUI;
 
+import Logic.zad6.PCA;
+import java.awt.image.BufferedImage;
+import java.util.Vector;
+
 /**
  *
  * @author Pawel
  */
 public class Z6Frame extends javax.swing.JFrame {
 
+    int imgNumber=0;
+    int pcaNumber=0;
+    Vector<BufferedImage> vec;
+    PCA pca = new PCA();
     /** Creates new form Z6Frame */
     public Z6Frame() {
+        pca.start();
         initComponents();
+        imageJPanel1.setImage(pca.images.get(0));
+        imageJPanel2.setImage(pca.getPc1());
+        vec = pca.throws1;
+        imageJPanel3.setImage(vec.get(0));
     }
 
     /** This method is called from within the constructor to
@@ -36,6 +49,10 @@ public class Z6Frame extends javax.swing.JFrame {
         imageJPanel3 = new GUI.ImageJPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,28 +89,76 @@ public class Z6Frame extends javax.swing.JFrame {
             .addGap(0, 226, Short.MAX_VALUE)
         );
 
-        jButton1.setText("jButton1");
+        jButton1.setText("<");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("1");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        jButton3.setText(">");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        jButton4.setText("2");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        jButton5.setText("3");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+
+        jButton6.setText("Rzut");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageJPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)))
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(imageJPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
                         .addComponent(imageJPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(imageJPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jButton1)
-                        .addGap(131, 131, 131)
-                        .addComponent(jButton2)))
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)
+                        .addGap(107, 107, 107)
+                        .addComponent(jButton6)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,15 +169,67 @@ public class Z6Frame extends javax.swing.JFrame {
                     .addComponent(imageJPanel3, javax.swing.GroupLayout.Alignment.LEADING, 0, 226, Short.MAX_VALUE)
                     .addComponent(imageJPanel2, javax.swing.GroupLayout.Alignment.LEADING, 0, 226, Short.MAX_VALUE)
                     .addComponent(imageJPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(121, Short.MAX_VALUE))
+                    .addComponent(jButton6)
+                    .addComponent(jButton2)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        imageJPanel2.setImage(pca.getPc1());
+        vec = pca.throws1;
+        imageJPanel2.updateUI();
+        this.repaint();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+       imageJPanel2.setImage(pca.getPc2());
+        vec = pca.throws2;
+        imageJPanel2.updateUI();
+        this.repaint();
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+       imageJPanel2.setImage(pca.getPc3());
+        vec = pca.throws3;
+        imageJPanel2.updateUI();
+        this.repaint();
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        if((imgNumber+1)<pca.images.size()) {
+            imgNumber+=1;
+            imageJPanel1.setImage(pca.images.get(imgNumber));
+            imageJPanel1.updateUI();
+            this.repaint();
+        }
+        System.out.println("Aktualny numer obrazu: " + imgNumber);
+
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if((imgNumber-1)>=0) {
+            imgNumber-=1;
+            imageJPanel1.setImage(pca.images.get(imgNumber));
+            imageJPanel1.updateUI();
+            this.repaint();
+        }
+        System.out.println("Aktualny numer obrazu: " + imgNumber);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        imageJPanel3.setImage(vec.get(imgNumber));
+        imageJPanel3.updateUI();
+            this.repaint();
+    }//GEN-LAST:event_jButton6MouseClicked
 
     /**
     * @param args the command line arguments
@@ -131,6 +248,10 @@ public class Z6Frame extends javax.swing.JFrame {
     private GUI.ImageJPanel imageJPanel3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     // End of variables declaration//GEN-END:variables
 
 }
